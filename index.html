@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>꿀초라를 소개합니다.</title>
+
+    <meta property="og:title" content="꿀초라 님의 추억사진"/>
+    <meta property="og:description" content="내가 만든 첫번째 웹페이지!"/>
+    <meta property="og:image" content="image.jpeg"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Yeon+Sung&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Nanum Brush Script', cursive;
+            font-family: 'Yeon Sung', cursive;
+        }
+
+        .mytitle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;    
+            justify-content: center;
+
+            margin-top: 30px;
+        }
+        .btn {
+            width: 300px;
+            height: 40px;
+ 
+            border: 2px solid #e8344e;
+
+            text-decoration: none;
+            text-align: center;
+
+            line-height: 40px;
+
+            color: #e8344e;
+
+            font-weight: bold;
+
+            border-radius: 40px;
+        }
+        .btn:hover {
+            background-color: #e8344e;
+            color: white;
+        }
+
+        .adopt {
+            width: 300px;
+            height: 100px;
+            border: 2px solid #e8344e;
+            
+            text-decoration: none;
+            text-align: center;
+
+            padding: 10px 20px 10px 20px;
+            line-height: 20px;
+
+            color: #e8344e;
+
+            font-weight: bold;
+
+            border-radius: 40px;
+        }
+        .adopt:hover {
+            background-color: #e8344e;
+            color: white;
+        }
+
+        .box {
+            width: 1000px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;    
+            justify-content: center;
+
+            margin: 40px auto 0px auto;
+        }
+        .map {
+            width: 500px;
+            height: 500px;
+            border-radius: 24px;
+
+            margin-right: 30px;
+        }
+        .story {
+            width: 450px;
+            height: 500px;
+        }
+        .image{
+            width: 450px;
+            height: 400px;
+
+            background-image: url('image.jpeg');
+            background-position: center;
+            background-size: cover;
+
+            border-radius: 12px;
+        }
+
+        .story > h2 {
+            margin: 20px 0px 0px 0px;
+            color: green;
+        }
+
+        .story > h3 {
+            margin: 5px 0px 0px 0px;
+
+            font-size: 16px;
+            color: gray;
+            font-weight: normal;
+        }
+
+        .story > p {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        @media screen and (max-width: 640px) {
+            h1 {
+                font-size: 26px;
+            }
+
+            .box {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .map {
+                width: 100%;
+                height: 200px;
+
+                margin: 0;
+            }
+
+            .story {
+                width: 100%;
+                height: auto;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mytitle">
+        <h1>사지마세요, 입양하세요.</h1>
+        <a class="btn" href="http://spartacodingclub.shop/free/202105/exhibition" target="_blank">모든 수강생들의 추억 보러가기 ></a>
+    </div>
+    <div class="box">
+        <div class="map" id="map"></div>
+        <div class="story">
+            <div class="image"></div>
+
+            <h2>사랑스런 우리 삼남매!</h2>
+            <h3>서울 송파구 가락동 뀰초라네 집</h3>
+            <p>
+                초코, 라떼, 뀨리야 너네를 만난지 1년 남짓한 시간이 흘렀네. 우리 집에 와 줘서 너무 고마워.<br>
+                우리 주인님들 만나서 엄마랑 아빠는 정말 행복해!<br>
+                아프지 말고 이 땅에 있는 동안 사랑 가득차게 받길 바래
+            </p>
+            <p>
+                지금도 가족을 만나지 못한 친구들이 많습니다.<br>사지 마시고 입양해 주세요. 그리고 버리지 마시고 평생 사랑해 주세요...<br>
+            </p>
+            <a class="adopt" href="http://pawinhand.kr/" target="_blank">입양하러 가기 ></a>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=535068688f1a8bca1c21a9445ede0a89"></script>
+    <script>
+        var markerPosition = new kakao.maps.LatLng(37.495879736805485, 127.1241738109055)
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+            mapOption = { 
+                center: markerPosition, // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        var imageSrc = "https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/2021_05_free_parents/sparta-marker.png"; 
+        var imageSize = new kakao.maps.Size(65, 86); 
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+        
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: markerPosition,
+            image : markerImage
+        });
+
+    </script>
+</body>
+</html>
